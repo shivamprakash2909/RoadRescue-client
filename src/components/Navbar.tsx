@@ -1,8 +1,8 @@
-import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useAuthStore } from '../store/authStore';
-import { apiClient } from '../api/client';
-import { Wrench, Shield, User, LogOut } from 'lucide-react';
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuthStore } from "../store/authStore";
+import { apiClient } from "../api/client";
+import { Wrench, Shield, User, LogOut } from "lucide-react";
 
 export const Navbar: React.FC = () => {
   const { user, isAuthenticated, logout } = useAuthStore();
@@ -10,12 +10,12 @@ export const Navbar: React.FC = () => {
 
   const handleLogout = async () => {
     try {
-      await apiClient.post('/api/v1/auth/logout');
+      await apiClient.post("/api/v1/auth/logout");
     } catch {
       // Ignore network errors during logout
     } finally {
       logout();
-      navigate('/login');
+      navigate("/login");
     }
   };
 
@@ -43,23 +43,17 @@ export const Navbar: React.FC = () => {
                   </span>
                 </div>
 
-                {user.role === 'CUSTOMER' && (
-                  <Link
-                    to="/customer"
-                    className="text-sm font-medium text-gray-700 hover:text-blue-600"
-                  >
+                {user.role === "CUSTOMER" && (
+                  <Link to="/customer" className="text-sm font-medium text-gray-700 hover:text-blue-600">
                     Dashboard
                   </Link>
                 )}
-                {(user.role === 'MECHANIC' || user.role === 'TOW_PROVIDER') && (
-                  <Link
-                    to="/provider"
-                    className="text-sm font-medium text-gray-700 hover:text-blue-600"
-                  >
+                {(user.role === "MECHANIC" || user.role === "TOW_PROVIDER") && (
+                  <Link to="/provider" className="text-sm font-medium text-gray-700 hover:text-blue-600">
                     Provider Panel
                   </Link>
                 )}
-                {user.role === 'ADMIN' && (
+                {user.role === "ADMIN" && (
                   <Link
                     to="/admin"
                     className="text-sm font-medium text-gray-700 hover:text-blue-600 flex items-center space-x-1"
