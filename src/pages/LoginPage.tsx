@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useAuthStore } from '../store/authStore';
-import { apiClient } from '../api/client';
-import { Wrench } from 'lucide-react';
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuthStore } from "../store/authStore";
+import { apiClient } from "../api/client";
+import { Wrench } from "lucide-react";
 
 export const LoginPage: React.FC = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   const { setAuth } = useAuthStore();
@@ -15,19 +15,19 @@ export const LoginPage: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError('');
+    setError("");
     setLoading(true);
 
     try {
-      const response = await apiClient.post('/api/v1/auth/login', { email, password });
+      const response = await apiClient.post("/api/v1/auth/login", { email, password });
       const { user, accessToken, refreshToken } = response.data;
       setAuth(user, accessToken, refreshToken);
 
-      if (user.role === 'ADMIN') navigate('/admin');
-      else if (user.role === 'CUSTOMER') navigate('/customer');
-      else navigate('/provider');
+      if (user.role === "ADMIN") navigate("/admin");
+      else if (user.role === "CUSTOMER") navigate("/customer");
+      else navigate("/provider");
     } catch (err: any) {
-      setError(err.response?.data?.message || 'Login failed. Please check your credentials.');
+      setError(err.response?.data?.message || "Login failed. Please check your credentials.");
     } finally {
       setLoading(false);
     }
@@ -42,7 +42,7 @@ export const LoginPage: React.FC = () => {
           </div>
           <h2 className="text-3xl font-extrabold text-gray-900">Sign in to RoadRescue</h2>
           <p className="mt-2 text-sm text-gray-600">
-            Or{' '}
+            Or{" "}
             <Link to="/register" className="font-medium text-blue-600 hover:text-blue-500">
               create a new account
             </Link>
@@ -50,9 +50,7 @@ export const LoginPage: React.FC = () => {
         </div>
 
         {error && (
-          <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm">
-            {error}
-          </div>
+          <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm">{error}</div>
         )}
 
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
@@ -86,7 +84,7 @@ export const LoginPage: React.FC = () => {
             disabled={loading}
             className="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none disabled:opacity-50 transition"
           >
-            {loading ? 'Signing in...' : 'Sign In'}
+            {loading ? "Signing in..." : "Sign In"}
           </button>
         </form>
       </div>
