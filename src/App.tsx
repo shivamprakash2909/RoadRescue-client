@@ -6,6 +6,8 @@ import { HomePage } from './pages/HomePage';
 import { LoginPage } from './pages/LoginPage';
 import { RegisterPage } from './pages/RegisterPage';
 import { CustomerDashboard } from './pages/CustomerDashboard';
+import { VehiclesPage } from './pages/customer/VehiclesPage';
+import { ProfilePage } from './pages/customer/ProfilePage';
 import { ProviderDashboard } from './pages/ProviderDashboard';
 import { AdminDashboard } from './pages/AdminDashboard';
 import { ActiveBookingPage } from './pages/ActiveBookingPage';
@@ -26,6 +28,8 @@ export const App: React.FC = () => {
             {/* Protected Customer Routes */}
             <Route element={<ProtectedRoute allowedRoles={['CUSTOMER']} />}>
               <Route path="/customer" element={<CustomerDashboard />} />
+              <Route path="/customer/vehicles" element={<VehiclesPage />} />
+              <Route path="/customer/profile" element={<ProfilePage />} />
               <Route path="/booking/active" element={<ActiveBookingPage />} />
             </Route>
 

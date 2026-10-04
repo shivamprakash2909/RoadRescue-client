@@ -44,9 +44,17 @@ export const Navbar: React.FC = () => {
                 </div>
 
                 {user.role === "CUSTOMER" && (
-                  <Link to="/customer" className="text-sm font-medium text-gray-700 hover:text-blue-600">
-                    Dashboard
-                  </Link>
+                  <>
+                    <Link to="/customer" className="text-sm font-medium text-gray-700 hover:text-blue-600">
+                      Dashboard
+                    </Link>
+                    <Link to="/customer/vehicles" className="text-sm font-medium text-gray-700 hover:text-blue-600">
+                      My Vehicles
+                    </Link>
+                    <Link to="/customer/profile" className="text-sm font-medium text-gray-700 hover:text-blue-600">
+                      Profile
+                    </Link>
+                  </>
                 )}
                 {(user.role === "MECHANIC" || user.role === "TOW_PROVIDER") && (
                   <Link to="/provider" className="text-sm font-medium text-gray-700 hover:text-blue-600">
