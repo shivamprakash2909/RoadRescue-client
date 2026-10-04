@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useAuthStore } from '../store/authStore';
-import { Wrench, CheckCircle2, XCircle, Radio } from 'lucide-react';
+import { Wrench, Radio } from 'lucide-react';
 
 export const ProviderDashboard: React.FC = () => {
   const { user } = useAuthStore();

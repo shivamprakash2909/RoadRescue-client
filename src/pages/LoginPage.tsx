@@ -20,8 +20,8 @@ export const LoginPage: React.FC = () => {
 
     try {
       const response = await apiClient.post('/api/v1/auth/login', { email, password });
-      const { user, accessToken } = response.data;
-      setAuth(user, accessToken);
+      const { user, accessToken, refreshToken } = response.data;
+      setAuth(user, accessToken, refreshToken);
 
       if (user.role === 'ADMIN') navigate('/admin');
       else if (user.role === 'CUSTOMER') navigate('/customer');

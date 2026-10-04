@@ -28,8 +28,8 @@ export const RegisterPage: React.FC = () => {
         password,
         role,
       });
-      const { user, accessToken } = response.data;
-      setAuth(user, accessToken);
+      const { user, accessToken, refreshToken } = response.data;
+      setAuth(user, accessToken, refreshToken);
 
       if (user.role === 'CUSTOMER') navigate('/customer');
       else if (user.role === 'ADMIN') navigate('/admin');
